@@ -61,7 +61,7 @@ in
           (lib.mapAttrs (_: value: value // { force = true; }) {
             ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./config/nvim;
             ".config/kitty".source = config.lib.file.mkOutOfStoreSymlink ./config/kitty;
-            "./".source = config.lib.file.mkOutOfStoreSymlink ./config/.hammerspoon;
+            ".hammerspoon".source = config.lib.file.mkOutOfStoreSymlink ./config/.hammerspoon;
           })
         ];
 

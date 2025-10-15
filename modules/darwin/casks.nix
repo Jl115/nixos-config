@@ -20,6 +20,7 @@ _:
     # System Utilities
     "hammerspoon"
     "homerow"
+    "hyperkey"
 
     # Fonts
     "font-hack-nerd-font"
