@@ -23,6 +23,7 @@ in
     enable = true;
     casks = pkgs.callPackage ./casks.nix {};
     brews = pkgs.callPackage ./brews.nix {};
+   
     # onActivation.cleanup = "uninstall";
 
     # These app IDs are from using the mas CLI app
@@ -52,7 +53,6 @@ in
         activation.cleanConflicts = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
           rm -rf $HOME/.config/nvim
           rm -rf $HOME/.config/kitty
-          rm -rf $HOME/.config/karabiner.json
           rm -rf $HOME/.hammerspoon
         '';
         file = lib.mkMerge [
