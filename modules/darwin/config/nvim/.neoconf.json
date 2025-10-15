@@ -1,0 +1,9 @@
+{
+  "neodev": {
+    "library": {
+      "enabled": true,
+      "plugins": true,
+      "types": true
+    }
+  }
+}

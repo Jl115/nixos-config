@@ -1,0 +1,90 @@
+{
+	// Define a basic struct with an implementation block
+	"class": {
+		"scope": "rust",
+		"prefix": "cls",
+		"body": [
+			"pub struct $1 {",
+			"\t$2: $3,",
+			"}",
+			"",
+			"impl $1 {",
+			"\tpub fn new($2: $3) -> Self {",
+			"\t\tSelf { $2 }",
+			"\t}",
+			"",
+			"\tpub fn run(&self) {",
+			"\t\t// $0",
+			"\t}",
+			"}"
+		],
+		"description": "Define a struct with a constructor and a run method"
+	},
+	// Define a basic enum with variants
+	"enum": {
+		"scope": "rust",
+		"prefix": "enum",
+		"body": [
+			"pub enum $1 {",
+			"\t$2,",
+			"\t$3,",
+			"}",
+			"",
+			"impl $1 {",
+			"\tpub fn run(&self) {",
+			"\t\tmatch self {",
+			"\t\t\tSelf::$2 => println!(\"$2 variant\"),",
+			"\t\t\tSelf::$3 => println!(\"$3 variant\"),",
+			"\t\t\t_ => {},",
+			"\t\t}",
+			"\t}",
+			"}"
+		],
+		"description": "Define a basic enum with variants and a run method"
+	},
+	// Define a trait with a single method
+	"trait": {
+		"scope": "rust",
+		"prefix": "trait",
+		"body": [
+			"pub trait $1 {",
+			"\tfn $2(&self);",
+			"}",
+			"",
+			"impl $1 for $3 {",
+			"\tfn $2(&self) {",
+			"\t\t// $0",
+			"\t}",
+			"}"
+		],
+		"description": "Define a trait with a method and its implementation"
+	},
+	// Define a simple test function
+	"test": {
+		"scope": "rust",
+		"prefix": "test",
+		"body": [
+			"#[cfg(test)]",
+			"mod tests {",
+			"\tuse super::*;",
+			"",
+			"\t#[test]",
+			"\tfn $1() {",
+			"\t\tassert_eq!($2, $3);",
+			"\t}",
+			"}"
+		],
+		"description": "Create a simple test function"
+	},
+	// Define a main function with basic structure
+	"main": {
+		"scope": "rust",
+		"prefix": "main",
+		"body": [
+			"fn main() {",
+			"\t$1",
+			"}"
+		],
+		"description": "Define a basic main function"
+	}
+}

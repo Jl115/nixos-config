@@ -1,0 +1,281 @@
+{
+	// 1. Stateless Widget Snippet
+	"Flutter Stateless Widget": {
+		"scope": "dart,flutter",
+		"prefix": "stless",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"",
+			"class ${1:MyWidget} extends StatelessWidget {",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return Scaffold(",
+			"      appBar: AppBar(",
+			"        title: Text('${1:MyWidget}'),",
+			"      ),",
+			"      body: Center(",
+			"        child: Text('Hello, Flutter!'),",
+			"      ),",
+			"    );",
+			"  }",
+			"}"
+		],
+		"description": "Create a stateless widget"
+	},
+	// 2. Stateful Widget Snippet
+	"Flutter Stateful Widget": {
+		"scope": "dart,flutter",
+		"prefix": "stful",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"",
+			"class ${1:MyStatefulWidget} extends StatefulWidget {",
+			"  @override",
+			"  _${1:MyStatefulWidget}State createState() => _${1:MyStatefulWidget}State();",
+			"}",
+			"",
+			"class _${1:MyStatefulWidget}State extends State<${1:MyStatefulWidget}> {",
+			"  int _counter = 0;",
+			"",
+			"  void _incrementCounter() {",
+			"    setState(() {",
+			"      _counter++;",
+			"    });",
+			"  }",
+			"",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return Scaffold(",
+			"      appBar: AppBar(",
+			"        title: Text('${1:MyStatefulWidget}'),",
+			"      ),",
+			"      body: Center(",
+			"        child: Column(",
+			"          mainAxisAlignment: MainAxisAlignment.center,",
+			"          children: <Widget>[",
+			"            Text('You have pushed the button this many times:'),",
+			"            Text(",
+			"              '$_counter',",
+			"              style: Theme.of(context).textTheme.headline4,",
+			"            ),",
+			"          ],",
+			"        ),",
+			"      ),",
+			"      floatingActionButton: FloatingActionButton(",
+			"        onPressed: _incrementCounter,",
+			"        tooltip: 'Increment',",
+			"        child: Icon(Icons.add),",
+			"      ),",
+			"    );",
+			"  }",
+			"}"
+		],
+		"description": "Create a stateful widget"
+	},
+	// 3. Container with Padding and Margin
+	"Flutter Container with Padding and Margin": {
+		"scope": "dart,flutter",
+		"prefix": "containerpad",
+		"body": [
+			"Container(",
+			"  padding: const EdgeInsets.all(${1:8.0}),",
+			"  margin: const EdgeInsets.all(${2:10.0}),",
+			"  decoration: BoxDecoration(",
+			"    border: Border.all(color: Colors.black),",
+			"    borderRadius: BorderRadius.circular(${3:10}),",
+			"  ),",
+			"  child: ${4:Text('Hello Container')},",
+			")"
+		],
+		"description": "Create a container with padding and margin"
+	},
+	// 4. Column with MainAxis Alignment
+	"Flutter Column with MainAxisAlignment": {
+		"scope": "dart,flutter",
+		"prefix": "columnalign",
+		"body": [
+			"Column(",
+			"  mainAxisAlignment: MainAxisAlignment.${1:center},",
+			"  crossAxisAlignment: CrossAxisAlignment.${2:center},",
+			"  children: <Widget>[",
+			"    ${3:Text('Item 1')},",
+			"    ${4:Text('Item 2')},",
+			"  ],",
+			")"
+		],
+		"description": "Create a column with alignment"
+	},
+	// 5. ListView.builder Snippet
+	"Flutter ListView.builder": {
+		"scope": "dart,flutter",
+		"prefix": "listviewbuilder",
+		"body": [
+			"ListView.builder(",
+			"  itemCount: ${1:10},",
+			"  itemBuilder: (context, index) {",
+			"    return ListTile(",
+			"      title: Text('Item ${index + 1}'),",
+			"    );",
+			"  },",
+			")"
+		],
+		"description": "Create a ListView.builder"
+	},
+	// 6. FutureBuilder Snippet
+	"Flutter FutureBuilder": {
+		"scope": "dart,flutter",
+		"prefix": "futurebuilder",
+		"body": [
+			"FutureBuilder<${1:DataType}>(",
+			"  future: ${2:yourFutureFunction()},",
+			"  builder: (context, snapshot) {",
+			"    if (snapshot.connectionState == ConnectionState.waiting) {",
+			"      return CircularProgressIndicator();",
+			"    } else if (snapshot.hasError) {",
+			"      return Text('Error: ${snapshot.error}');",
+			"    } else {",
+			"      return ${3:YourWidget}(data: snapshot.data);",
+			"    }",
+			"  },",
+			")"
+		],
+		"description": "Create a FutureBuilder"
+	},
+	// 7. StreamBuilder Snippet
+	"Flutter StreamBuilder": {
+		"scope": "dart,flutter",
+		"prefix": "streambuilder",
+		"body": [
+			"StreamBuilder<${1:DataType}>(",
+			"  stream: ${2:yourStream},",
+			"  builder: (context, snapshot) {",
+			"    if (snapshot.connectionState == ConnectionState.waiting) {",
+			"      return CircularProgressIndicator();",
+			"    } else if (snapshot.hasError) {",
+			"      return Text('Error: ${snapshot.error}');",
+			"    } else {",
+			"      return ${3:YourWidget}(data: snapshot.data);",
+			"    }",
+			"  },",
+			")"
+		],
+		"description": "Create a StreamBuilder"
+	},
+	// 8. TextFormField Snippet
+	"Flutter TextFormField": {
+		"scope": "dart,flutter",
+		"prefix": "textformfield",
+		"body": [
+			"TextFormField(",
+			"  controller: ${1:controller},",
+			"  decoration: InputDecoration(",
+			"    labelText: '${2:Label}',",
+			"    hintText: '${3:Hint}',",
+			"  ),",
+			"  validator: (value) {",
+			"    if (value == null || value.isEmpty) {",
+			"      return 'Please enter some text';",
+			"    }",
+			"    return null;",
+			"  },",
+			")"
+		],
+		"description": "Create a TextFormField with validation"
+	},
+	// 9. AlertDialog Snippet
+	"Flutter AlertDialog": {
+		"scope": "dart,flutter",
+		"prefix": "alertdialog",
+		"body": [
+			"showDialog(",
+			"  context: context,",
+			"  builder: (BuildContext context) {",
+			"    return AlertDialog(",
+			"      title: Text('${1:Title}'),",
+			"      content: Text('${2:Content}'),",
+			"      actions: <Widget>[",
+			"        TextButton(",
+			"          child: Text('${3:Cancel}'),",
+			"          onPressed: () {",
+			"            Navigator.of(context).pop();",
+			"          },",
+			"        ),",
+			"        TextButton(",
+			"          child: Text('${4:OK}'),",
+			"          onPressed: () {",
+			"            ${5:yourAction};",
+			"          },",
+			"        ),",
+			"      ],",
+			"    );",
+			"  },",
+			");"
+		],
+		"description": "Show an AlertDialog"
+	},
+	"Singleton Class": {
+		"prefix": "sic",
+		"body": [
+			"class ${1:SingletonClass} {",
+			"  static ${1:SingletonClass}? _instance;",
+			"  ${1:SingletonClass}._internal();",
+			"",
+			"  factory ${1:SingletonClass}() {",
+			"    _instance ??= ${1:SingletonClass}._internal();",
+			"    return _instance!;",
+			"  }",
+			"",
+			"  // Add your methods here",
+			"  void doSomething() {",
+			"    print('${1:SingletonClass} is doing something!');",
+			"  }",
+			"}"
+		],
+		"description": "Create a Dart singleton class"
+	},
+	"toString": {
+		"prefix": "toString",
+		"scope": "flutter,dart",
+		"body": [
+			"@override",
+			"String toString() => ${1:toString}"
+		],
+		"description": "Returns a string representation of this object."
+	},
+	"printS": {
+		"prefix": "printS",
+		"body": [
+			"print('\\x1B[32m$1 -------------------- ${$1}\\x1B[0m');",
+		],
+		"description": "Structured print with green color"
+	},
+	"printSr": {
+		"prefix": "printSr",
+		"body": [
+			"print('\\x1B[31m$1 -------------------- ${$1}\\x1B[0m');",
+		],
+		"description": "Structured print with red color"
+	},
+	"try": {
+		"prefix": "dtry",
+		"body": [
+			"try {",
+			"$2",
+			"} catch(error) {",
+			"debugPrint('[Error] in $TM_FILENAME_BASE $1: \\$error');",
+			"if (dotenv.env['ENVIRONMENT'] == 'development') {",
+			"_api.fpDebug(null,'[Error] in $TM_FILENAME_BASE $1: \\$error');",
+			"};",
+			"}"
+		],
+		"description": "Create a try catch with console error for dart"
+	},
+  "Flutter TODO": {
+		"scope": "dart,flutter",
+		"prefix": "todo",
+		"body": [
+      "//TODO: ($1) $2"
+		],
+		"description": "Create a todo comment"
+	},
+}

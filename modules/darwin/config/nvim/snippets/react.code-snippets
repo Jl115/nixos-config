@@ -1,0 +1,161 @@
+{
+  // -------------------------
+  // Component Snippets
+  // -------------------------
+
+  "React Functional Component with Props & Export": {
+    "prefix": "rfce",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface ${TM_FILENAME_BASE}Props {",
+      "  $1",
+      "}",
+      "",
+      "const ${TM_FILENAME_BASE} = ({ $2 }: ${TM_FILENAME_BASE}Props) => {",
+      "  return (",
+      "    <div>",
+      "      <h1>${TM_FILENAME_BASE}</h1>",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${TM_FILENAME_BASE};",
+      ""
+    ],
+    "description": "Creates a React functional component with a props interface, automatically named after the file."
+  },
+
+  "React Functional Component with Memo & Props": {
+    "prefix": "rfcep",
+    "body": [
+      "import React, { memo } from 'react';",
+      "",
+      "interface ${TM_FILENAME_BASE}Props {",
+      "  $1",
+      "}",
+      "",
+      "const ${TM_FILENAME_BASE} = ({ $2 }: ${TM_FILENAME_BASE}Props) => {",
+      "  return (",
+      "    <div>",
+      "      <h1>${TM_FILENAME_BASE}</h1>",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default memo(${TM_FILENAME_BASE});",
+      ""
+    ],
+    "description": "Creates a memoized React functional component with a props interface."
+  },
+
+  // -------------------------
+  // Hook Snippets
+  // -------------------------
+
+  "useState Hook": {
+    "prefix": "us",
+    "body": [
+      "const [$1, set${1/(.*)/${1:/capitalize}/}] = useState($2);"
+    ],
+    "description": "Creates a useState hook with an auto-capitalized setter (e.g., 'count' becomes 'setCount')."
+  },
+
+  "useEffect Hook": {
+    "prefix": "ue",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "",
+      "  return () => {",
+      "    $2",
+      "  };",
+      "}, [$3]);"
+    ],
+    "description": "Creates a useEffect hook with a cleanup function."
+  },
+  
+  "useEffect Hook (No Cleanup)": {
+    "prefix": "ue-noclean",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "}, [$2]);"
+    ],
+    "description": "Creates a useEffect hook without a cleanup function."
+  },
+
+  "useContext Hook": {
+    "prefix": "uc",
+    "body": [
+      "const $1 = useContext($2);"
+    ],
+    "description": "Creates a useContext hook."
+  },
+
+  "useReducer Hook": {
+    "prefix": "ur",
+    "body": [
+      "const [$1, dispatch] = useReducer($2, $3);"
+    ],
+    "description": "Creates a useReducer hook."
+  },
+
+  "useCallback Hook": {
+    "prefix": "ucb",
+    "body": [
+      "const $1 = useCallback(() => {",
+      "  $2",
+      "}, [$3]);"
+    ],
+    "description": "Creates a useCallback hook."
+  },
+
+  "useMemo Hook": {
+    "prefix": "um",
+    "body": [
+      "const $1 = useMemo(() => $2, [$3]);"
+    ],
+    "description": "Creates a useMemo hook."
+  },
+
+  "useRef Hook": {
+    "prefix": "ur",
+    "body": [
+      "const $1Ref = useRef<$2>(null);"
+    ],
+    "description": "Creates a useRef hook with a TypeScript generic."
+  },
+
+  // -------------------------
+  // Import Snippets
+  // -------------------------
+
+  "Import React": {
+    "prefix": "imr",
+    "body": [
+      "import React from 'react';"
+    ],
+    "description": "Imports React."
+  },
+
+  "Import React with Hooks": {
+    "prefix": "imr-hooks",
+    "body": [
+      "import React, { useState, useEffect } from 'react';"
+    ],
+    "description": "Imports React with useState and useEffect."
+  },
+  
+  // -------------------------
+  // Miscellaneous
+  // -------------------------
+
+  "Console Log": {
+    "prefix": "cl",
+    "body": [
+      "console.log('$1:', $1);"
+    ],
+    "description": "Logs a variable to the console with its name as a label."
+  }
+}

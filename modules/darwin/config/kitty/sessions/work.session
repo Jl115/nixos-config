@@ -1,0 +1,73 @@
+# Kitty Session: Work
+# Definitive version using --var and focus_matching_window for focus control.
+
+# --- OS Window 1: AHUB Project ---
+new_os_window
+# Tab 1: AHUB Servers
+# Tag the first pane with a variable so we can focus it later.
+launch --title AHUB --var is_first=true --cwd /Users/joelevo/Projects/evosys/alarmhub/server npm run serve
+layout tall
+launch --cwd /Users/joelevo/Projects/evosys/alarmhub/client npm run serve
+launch --location=hsplit --cwd /Users/joelevo/Projects/evosys/alarmhub/map npm run serve
+
+# Tab 2: NVIM (single pane, no focus command needed)
+launch --title NVIM --cwd /Users/joelevo/Projects/evosys/alarmhub
+
+
+# Tab 3: CONSOLE (single pane, no focus command needed)
+launch --title CONSOLE --cwd /Users/joelevo/Projects/evosys/alarmhub
+
+# --- OS Window 2: FLOR Project ---
+new_os_window
+# Tab 1: FLOR Servers
+launch --title FLOR --var is_first=true --cwd /Users/joelevo/Projects/evosys/floriplan/server npm run serve
+layout tall
+launch --cwd /Users/joelevo/Projects/evosys/floriplan/client npm run serve
+
+# Tab 2: NVIM
+launch --title NVIM --cwd /Users/joelevo/Projects/evosys/floriplan
+
+# Tab 3: CONSOLE
+launch --title CONSOLE --cwd /Users/joelevo/Projects/evosys/floriplan
+
+# --- OS Window 3: SPOT Project ---
+new_os_window
+# Tab 1: SPOT Servers
+launch --title SPOT --var is_first=true --cwd /Users/joelevo/Projects/evosys/spotpilot/server npm run serve
+layout tall
+launch --cwd /Users/joelevo/Projects/evosys/spotpilot/client npm run serve
+
+# Tab 2: NVIM
+launch --title NVIM --cwd /Users/joelevo/Projects/evosys/spotpilot
+
+
+# Tab 3: CONSOLE
+launch --title CONSOLE --cwd /Users/joelevo/Projects/evosys/spotpilot
+
+# --- OS Window 4: ALDI Project ---
+new_os_window
+# Tab 1: ALDI Servers
+launch --title ALDI --var is_first=true --cwd /Users/joelevo/Projects/evosys/alarmdisplay/server npm run serve
+layout tall
+launch --cwd /Users/joelevo/Projects/evosys/alarmdisplay/client npm run serve
+launch --location=hsplit --cwd /Users/joelevo/Projects/evosys/alarmdisplay/display npm run serve
+
+# Tab 2: NVIM
+launch --title NVIM --cwd /Users/joelevo/Projects/evosys/alarmdisplay
+
+# Tab 3: CONSOLE
+launch --title CONSOLE --cwd /Users/joelevo/Projects/evosys/alarmdisplay
+
+# --- OS Window 5: MYEV Project ---
+new_os_window
+# Tab 1: MYEV Servers
+launch --title MYEV --var is_first=true --cwd /Users/joelevo/Projects/evosys/myevosys/server npm run serve
+layout tall
+launch --cwd /Users/joelevo/Projects/evosys/myevosys/login npm run serve
+launch --location=hsplit --cwd /Users/joelevo/Projects/evosys/myevosys/client npm run serve
+
+# Tab 2: NVIM
+launch --title NVIM --cwd /Users/joelevo/Projects/evosys/myevosys
+
+# Tab 3: CONSOLE
+launch --title CONSOLE --cwd /Users/joelevo/Projects/evosys/myevosys

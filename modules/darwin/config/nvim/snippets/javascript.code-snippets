@@ -1,0 +1,302 @@
+{
+	"Print to server console": {
+		"scope": "javascript,vue",
+		"prefix": "logS",
+		"body": [
+			"console.log('\\x1b[33m%s\\x1b[0m', '$1 --------------------', $1);"
+		],
+		"description": "Log output to server console"
+	},
+	"Add todo comment": {
+		"scope": "javascript,vue",
+		"prefix": "todo",
+		"body": [
+			"/* <!-- TODO: ($1) $2 --> */"
+		],
+		"description": "Add TODO comment"
+	},
+	"Add a break": {
+		"scope": "javascript,vue",
+		"prefix": "break",
+		"body": [
+			"throw new Error('Break');"
+		],
+		"description": "Add Break"
+	},
+	"PromiseWithoutCatch": {
+		"scope": "javascript,vue",
+		"prefix": "promise",
+		"body": [
+			"await new Promise((resolve) => {",
+			"\tlet promiseCount = 0;",
+			"\t$1.forEach(($2) => {",
+			"\t\t$3",
+			"\t\tpromiseCount++;",
+			"\t\tif (promiseCount == $1.length) {",
+			"\t\t\tresolve();",
+			"\t\t}",
+			"\t});",
+			"});"
+		],
+		"description": "Create a promise for a forEach loop"
+	},
+	"Promise": {
+		"scope": "javascript,vue",
+		"prefix": "promise",
+		"body": [
+			"return new Promise((resolve, reject) => {",
+			"  try {",
+			"    if (!$1.length > 0) {",
+			"      resolve();",
+			"    }",
+			"    let promiseCount = 0;",
+			"    $1.forEach(($2) => {",
+			"      $3",
+			"      promiseCount++;",
+			"      if (promiseCount == $1.length) {",
+			"        resolve();",
+			"      }",
+			"    });",
+			"  } catch (error) {",
+			"    reject(new Error(`[Error] in $TM_FILENAME_BASE $4: \\${error}`));",
+			"  }",
+			"});"
+		],
+		"description": "Create a promise for a forEach loop"
+	},
+	"Sort array of objects": {
+		"scope": "javascript,vue",
+		"prefix": ".sortArrayOfObjects",
+		"body": [
+			".sort((a, b) => (a.order > b.order ? 1 : -1));"
+		],
+		"description": "Sort an array of objects"
+	},
+	"TwoPromises": {
+		"scope": "javascript,vue",
+		"prefix": "promises",
+		"body": [
+			"await new Promise((resolve) => {",
+			"\tlet promiseCount = 0;",
+			"\t$1.forEach(($1) => {",
+			"await new Promise((secondResolve) => {",
+			"\tlet secondPromiseCount = 0;",
+			"\t$2.forEach(($2) => {",
+			"\t\t$3",
+			"\t\tsecondPromiseCount++;",
+			"\t\tif (secondPromiseCount == $2.length) {",
+			"\t\tsecondResolve();",
+			"\t\t}",
+			"\t});",
+			"});",
+			"\t\tpromiseCount++;",
+			"\t\tif (promiseCount == $1.length) {",
+			"\t\t\tresolve();",
+			"\t\t}",
+			"\t});",
+			"});"
+		],
+		"description": "Create a promise for two forEach loops"
+	},
+	"forEach": {
+		"scope": "javascript,vue",
+		"prefix": ".each",
+		"body": [
+			".forEach($1 => {",
+			"\t$2",
+			"});"
+		],
+		"description": "Iterate over an array with forEach"
+	},
+	"Unbind": {
+		"scope": "javascript,vue",
+		"prefix": "unbind",
+		"body": [
+			"JSON.parse(JSON.stringify($1))"
+		],
+		"description": "Unbind value"
+	},
+	"Vue3": {
+		"scope": "javascript,vue",
+		"prefix": "setup",
+		"body": [
+			"<template>",
+			"<div>",
+			"<MainButton",
+			"v-if=\"systemViewActive\"",
+			"class=\"btn-wide btn-back mt-3 ml-3\":label=\"$t('general.button.back')\"",
+			"@click=\"backToOrganizations\"></MainButton>",
+			"</div>",
+			"</template>",
+			"<script setup>",
+			" //* VUE",
+			"/* import {ref} from 'vue'; */",
+			"",
+			" //* COMPOSABLES",
+			"import { getVariables } from '@/composables/mainVariables';",
+			"",
+			" //* GRAPHQL",
+			"",
+			" //* VUELIDATE",
+			"",
+			" //* CUSTOM",
+			"import { useRouter } from 'vue-router';",
+			"",
+			" //* COMPONENTS",
+			"",
+			" //* CONTROLLERS",
+			"",
+			" //* LOAD INITIAL",
+			" const { systemViewActive, getLocale } = getVariables() ",
+			"const router = useRouter();",
+			"",
+			" //* VARIABLES",
+			"",
+			" //* QUERYS",
+			"",
+			" //* COMPUTED",
+			"",
+			" //* METHODS",
+			"const backToOrganizations = () => router.push(`/${getLocale()}/admin/organization`);",
+			"",
+			" //* MOUNTED",
+			"",
+			" //* CREATED",
+			"",
+			"</script>",
+			"<style lang='scss' scoped>",
+			"@import '@/assets/styles/views/$TM_FILENAME_BASE.scss';",
+			"</style>"
+		],
+		"description": "Create a full Vue 3 setup"
+	},
+	"sleep": {
+		"scope": "javascript,vue",
+		"prefix": "sleep",
+		"body": [
+			"await new Promise((resolve) => setTimeout(resolve, 1000));"
+		],
+		"description": "Create sleep for 1 second"
+	},
+	"migration": {
+		"scope": "javascript,vue",
+		"prefix": "migration",
+		"body": [
+			"if (process.env.NODE_ENV === 'local' || process.env.NODE_ENV === 'development') {",
+			"return;",
+			"}",
+			"const transaction = await queryInterface.sequelize.transaction();",
+			"try {",
+			"  return transaction.commit();",
+			"} catch (error) {",
+			"  await transaction.rollback();",
+			"  throw error;",
+			"}"
+		],
+		"description": "Create a standard migration configuration"
+	},
+	"loadingComponent": {
+		"scope": "javascript,vue",
+		"prefix": "loadingComponent",
+		"body": [
+			"<LoadingComponent :displayLoading='displayLoading' />",
+			"import LoadingComponent from '@/components/LoadingComponent';"
+		],
+		"description": "Create a standard LoadingComponent"
+	},
+	"toastComponent": {
+		"scope": "javascript,vue",
+		"prefix": "toastComponent",
+		"body": [
+			"<ToastComponent @toastConfirmed='onToastConfirm' />",
+			"const ToastComponent = defineAsyncComponent(() => import('@/components/ToastComponent'));",
+			"import { useToast } from 'primevue/usetoast';",
+			"const toast = useToast();"
+		],
+		"description": "Create a standard ToastComponent"
+	},
+	"error": {
+		"scope": "javascript,vue",
+		"prefix": "error",
+		"body": [
+			"console.error('[Error] in $1: ', error);"
+		],
+		"description": "Create a console error"
+	},
+	"try": {
+		"scope": "javascript,vue",
+		"prefix": "try",
+		"body": [
+			"try {",
+			"$2",
+			"} catch(error) {",
+			"console.error('[Error] in $TM_FILENAME_BASE ${selectedText} $1: ', error);",
+			"}"
+		],
+		"description": "Create a console error"
+	},
+	"trys": {
+		"scope": "javascript,vue",
+		"prefix": "trys",
+		"body": [
+			"try {",
+			"$2",
+			"} catch(error) {",
+			"console.error('[Error] in $TM_FILENAME_BASE $1: ', error);",
+			"if (res?.headersSent) return;",
+			"return res.status(500).send({",
+			"status: false,",
+			"code: 500,",
+			"detail: `[Error] in $TM_FILENAME_BASE $1`,",
+			"message: `Internal Server Error`,",
+			"});",
+			"}"
+		],
+		"description": "Create a try catch with console error on server"
+	},
+	"function": {
+		"scope": "javascript,vue",
+		"prefix": "function",
+		"body": [
+			"const $1 = () => {",
+			"try {",
+			"$2",
+			"} catch(error) {",
+			"console.error('[Error] in $TM_FILENAME_BASE $1: ', error);",
+			"}",
+			"}"
+		],
+		"description": "Create a function with try catch block"
+	},
+	"headersSent": {
+		"scope": "javascript,vue",
+		"prefix": "hS",
+		"body": [
+			"if (res?.headersSent) return;"
+		],
+		"description": "Create a return statement for already sent headers"
+	},
+  "composable": {
+		"scope": "javascript,vue",
+		"prefix": "composable",
+		"body": [
+			"//* IMPORTS",
+			"",
+			"//* GLOBAL_STATE",
+			"",
+			"export function $TM_FILENAME_BASE() {",
+			"//* VARIABLES",
+			"",
+			"//* LOAD INITIAL",
+			"",
+			"//* METHODS",
+			"",
+			"//* LIFECYCLE HOOKS",
+			"",
+			"//* EXPORTS",
+			"return {};",
+			"}"
+		],
+		"description": "Create a Vue composable"
+	}
+}
