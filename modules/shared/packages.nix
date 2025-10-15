@@ -42,6 +42,7 @@ with pkgs; [
   sqlite
   terraform
   kanata # Keyboard customizer.
+  neovim
   # ---
 
   # Containerization

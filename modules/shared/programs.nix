@@ -208,6 +208,13 @@ let name = "jl115";
   fzf = {
     enableBashIntegration = true;
   };
+
+  
+  neovim = {
+    enable = true;
+    withNodeJs = true;
+  };
+
   
   ssh = {
     enable = true;

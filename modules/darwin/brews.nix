@@ -20,7 +20,6 @@ _:
     "luv"
     "m4"
     "media-control"
-    "neovim"
     "tcl-tk"
     "webp"
 ]
