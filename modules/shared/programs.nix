@@ -9,6 +9,12 @@ let name = "jl115";
     enable = true;
     autocd = false;
     cdpath = [ "~/Projects" ];
+    enableCompletion = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh = { 
+      enable = true;
+      plugins = [ "git" "alias-finder" "zsh-syntax-highlighting" "zsh-autosuggestions" ];
+    };
     plugins = [
       {
           name = "powerlevel10k";
@@ -27,13 +33,23 @@ let name = "jl115";
         . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
       fi
 
-      [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+
+      
+      zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+      zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+      zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+      zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
+      
+     [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 
       # Define variables for directories
       export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
       export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
       export PATH=$HOME/.local/share/bin:$PATH
+      export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
+
 
       # Remove history data we don't want to see
       export HISTIGNORE="pwd:ls:cd"
@@ -51,9 +67,7 @@ let name = "jl115";
         if [ -z "$1" ]; then
           echo "Usage: findapp <AppName>"
           return 1
-        fi
-  
-  
+        fi 
       curl -s "https://itunes.apple.com/search?term=$1&country=us&entity=software&limit=3" | \
       jq '.results[] | {appName: .trackName, id: .trackId, version: .version, developer: .artistName, bundleID: .bundleId}'
       }
@@ -62,18 +76,39 @@ let name = "jl115";
         cd ~/.config/nixos-config
         nix run .#build
       }
+
       nswitch() {
         cd ~/.config/nixos-config
         nix run .#build-switch
       }
+
       vi() { nvim "$@"; }
 
 
       # Use difftastic, syntax-aware diffing
       alias diff=difft
-
+      alias flor-dev="ssh centos@dev.app.floriplan.ch"
+      alias flor-test="ssh centos@test.app.floriplan.ch"
+      alias myev-dev="ssh centos@dev.my.evosys.ch"
+      alias myev-test="ssh centos@test.my.evosys.ch"
+      alias ahub-dev="ssh debian@dev.app.alarmhub.ch"
+      alias ahub-test="ssh debian@test.app.alarmhub.ch"
+      alias aldi-dev="ssh debian@dev.app.alarmdisplay.ch"
+      alias spot-dev="ssh debian@dev.app.spotpilot.ch"
+      alias spot-test="ssh debian@test.app.spotpilot.ch"
+      alias aldi-test="ssh debian@test.app.alarmdisplay.ch"
+      alias gu="git reset --soft HEAD~1"
+      alias vp-log="ssh -p 58291 root@31.97.36.220"
+      alias vp-kube="ssh -L 6443:127.0.0.1:6443 root@31.97.36.220 -p 58291"
+      alias cd='z'
+      alias cdi='zi'
+      alias cdl='zoxide query -l -s | less'
+      alias cda='zoxide add'
       # Always color ls and group directories
       alias ls='ls --color=auto'
+
+
+      eval "$(zoxide init zsh)"
     '';
   };
 

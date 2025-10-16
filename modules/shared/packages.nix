@@ -43,6 +43,7 @@ with pkgs; [
   terraform
   kanata # Keyboard customizer.
   neovim
+  oh-my-zsh
   # ---
 
   # Containerization
