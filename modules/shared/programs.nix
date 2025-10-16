@@ -46,13 +46,16 @@ let name = "jl115";
           nix-shell '<nixpkgs>' -A "$1"
       }
 
-      # Function to find an app's ID in the Swiss App Store using ipatool
+      # Function to find an app using the iTunes API and format with jq
       findapp() {
         if [ -z "$1" ]; then
           echo "Usage: findapp <AppName>"
           return 1
         fi
-        ipatool search "$1" --country ch
+  
+  
+      curl -s "https://itunes.apple.com/search?term=$1&country=us&entity=software&limit=3" | \
+      jq '.results[] | {appName: .trackName, id: .trackId, version: .version, developer: .artistName, bundleID: .bundleId}'
       }
 
       nbuild() {

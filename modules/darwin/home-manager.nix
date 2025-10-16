@@ -40,9 +40,9 @@ in
     masApps = {
       "goodnotes-ki-notizen-pdf" = 1444383602;
       "pages" = 409201541;
-      "moodle" = 633359593;
-      "numbers" = 409203825;
-      "teams" = 1113153706;
+      # "moodle" = 633359593;
+      # "numbers" = 361304891;
+      # "microsoft-teams" = 1149555830;
     };
   };
 
@@ -68,6 +68,21 @@ in
           })
         ];
 
+        activation = {
+          setWallpaper = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            # Path to your wallpaper inside nixos-config
+            wallpaper="${./config/renji.jpg}"
+            # Set wallpaper for all desktops
+            /usr/bin/osascript -e '
+            tell application "System Events"
+              repeat with d in desktops
+                set picture of d to POSIX file "'"$wallpaper"'"
+              end repeat
+            end tell
+            '
+          '';
+        };
+
         stateVersion = "23.11";
       };
       programs = {} // import ../shared/programs.nix { inherit config pkgs lib; };
@@ -86,7 +101,7 @@ in
       entries = [
         { path = "/System/Applications/Apps.app"; }
         { path = "/System/Applications/System Settings.app"; }
-        { path = "/System/Applications/Goodnotes.app"; }
+        { path = "/System/Applications/goodnotes-ki-notizen-pdf.app"; }
         { path = "/Applications/Arc.app"; }
         { path = "${pkgs.kitty}/Applications/Kitty.app"; }
         {
