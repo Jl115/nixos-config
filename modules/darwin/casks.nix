@@ -21,6 +21,7 @@ _:
     "hammerspoon"
     "homerow"
     "hyperkey"
+    "creality-print"
 
     # Fonts
     "font-hack-nerd-font"

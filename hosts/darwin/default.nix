@@ -60,7 +60,7 @@ let user = "jldev"; in
         "com.apple.sound.beep.feedback" = 0;
 
         AppleEnableMouseSwipeNavigateWithScrolls = true;
-        AppleIconAppearanceTheme = "ClearDark";
+        AppleIconAppearanceTheme = "RegularDark";
         AppleInterfaceStyle = "Dark";
         AppleShowAllFiles = true;
         NSAutomaticCapitalizationEnabled = false;
@@ -72,7 +72,7 @@ let user = "jldev"; in
         show-recents = false;
         launchanim = true;
         orientation = "right";
-        tilesize = 6;
+        tilesize = 12;
         appswitcher-all-displays = true;
         autohide-delay = 0.15;
         largesize = 64;

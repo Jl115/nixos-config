@@ -46,6 +46,15 @@ let name = "jl115";
           nix-shell '<nixpkgs>' -A "$1"
       }
 
+      # Function to find an app's ID in the Swiss App Store using ipatool
+      findapp() {
+        if [ -z "$1" ]; then
+          echo "Usage: findapp <AppName>"
+          return 1
+        fi
+        ipatool search "$1" --country ch
+      }
+
       nbuild() {
         cd ~/.config/nixos-config
         nix run .#build

@@ -40,6 +40,9 @@ in
     masApps = {
       "goodnotes-ki-notizen-pdf" = 1444383602;
       "pages" = 409201541;
+      "moodle" = 633359593;
+      "numbers" = 409203825;
+      "teams" = 1113153706;
     };
   };
 
