@@ -54,10 +54,22 @@ in {
 
 
        # Define variables for directories
-       export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
-       export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
+       export EDITOR=nvim
+       export LANG=en_US.UTF-8
+       export NVM_DIR="$HOME/.nvm"
+       export PATH=$HOME/.gem/bin:$PATH
+       export PATH="$PATH:$HOME/.pub-cache/bin"
+       export PATH="$PATH:$(go env GOPATH)/bin"
        export PATH=$HOME/.local/share/bin:$PATH
+       export PATH="/usr/local/opt/trash/bin:$PATH"
        export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
+       export PATH="$HOME/Development/flutter/bin:$PATH"
+       export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
+       export PATH="$PATH":"$HOME/Library/Android/sdk/platform-tools"
+       export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
+
+
+
 
 
        # Remove history data we don't want to see
@@ -93,6 +105,46 @@ in {
 
        vi() { nvim "$@"; }
 
+       lint() {
+        base_dir="../"
+
+        # Exclusion pattern
+        exclude_pattern=$(printf "! -name %s " "node_modules" ".vscode" ".idea" ".git" "setup")
+
+        # Collect directories
+        dirs=$(eval find "$base_dir" -mindepth 1 -maxdepth 1 -type d $exclude_pattern)
+
+        has_errors=false
+
+        # Loop without subshell (use process substitution instead of a pipe)
+        while IFS= read -r dir; do
+          echo "Processing $dir..."
+          if [ -f "$dir/package.json" ]; then
+            if grep -q "\"lint\":" "$dir/package.json"; then
+              echo "Linting $dir..."
+              if npm run lint --prefix "$dir"; then
+                echo "Linting succeeded in $dir"
+              else
+                echo "Linting failed in $dir"
+                has_errors=true
+              fi
+            else
+              echo "No lint command found in $dir, skipping."
+            fi
+          else
+            echo "No package.json found in $dir, skipping."
+          fi
+        done < <(echo "$dirs")
+
+        if [ "$has_errors" = false ]; then
+          echo "All linting completed successfully!"
+        else
+          echo "Linting completed with errors."
+        fi
+       }
+       migration() {
+        npx sequelize-cli migration:generate --name "$1"
+       }
 
        # Use difftastic, syntax-aware diffing
        alias diff=difft
@@ -115,8 +167,47 @@ in {
        alias cda='zoxide add'
        # Always color ls and group directories
        alias ls='ls --color=auto'
+       alias resetDb="npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
+       alias clear="clear && printf '\e[3J'"
 
+       alias mg="migration"
+       alias mgn="migration"
+       alias f="fvm flutter"
+       alias d="fvm dart"
+       alias gu="git reset --soft HEAD~1"
+       alias vp-log="ssh -p 58291 root@31.97.36.220"
+       alias vp-kube="ssh -L 6443:127.0.0.1:6443 root@31.97.36.220 -p 58291"
 
+        # NVM Initialization
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+        # place this after nvm initialization!
+        autoload -U add-zsh-hook
+
+        load-nvmrc() {
+          local nvmrc_path
+          nvmrc_path="$(nvm_find_nvmrc)"
+
+          if [ -n "$nvmrc_path" ]; then
+            local nvmrc_node_version
+            nvmrc_node_version=$(nvm version "$(cat "$nvmrc_path")")
+
+            if [ "$nvmrc_node_version" = "N/A" ]; then
+              nvm install
+            elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+              nvm use
+            fi
+          elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+            echo "Reverting to nvm default version"
+            nvm use default
+          fi
+        }
+
+        add-zsh-hook chpwd load-nvmrc
+        load-nvmrc
+
+       [[ -f /Users/joelevo/.dart-cli-completion/zsh-config.zsh ]] && . /Users/joelevo/.dart-cli-completion/zsh-config.zsh || true
        eval "$(zoxide init zsh)"
     '';
   };

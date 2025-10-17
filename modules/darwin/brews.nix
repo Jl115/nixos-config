@@ -10,6 +10,7 @@ _: [
   "dfu-programmer"
   "dfu-util"
   "docker-completion"
+  "colima"
   "highway"
   "jpeg-turbo"
   "jpeg-xl"
@@ -21,4 +22,5 @@ _: [
   "media-control"
   "tcl-tk"
   "webp"
+  "nvm"
 ]

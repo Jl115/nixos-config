@@ -71,6 +71,7 @@ in {
             ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./config/nvim;
             ".config/kitty".source = config.lib.file.mkOutOfStoreSymlink ./config/kitty;
             ".hammerspoon".source = config.lib.file.mkOutOfStoreSymlink ./config/.hammerspoon;
+            ".warp".source = config.lib.file.mkOutOfStoreSymlink ./config/.warp;
           })
         ];
 

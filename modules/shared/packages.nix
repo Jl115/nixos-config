@@ -52,6 +52,27 @@ with pkgs; [
 
   # ---
 
+  # Languages & Toolchains
+  # Modern language runtimes and build tools installed system-wide (no nix develop).
+  nodejs_22
+  fvm
+  flutter
+  pnpm
+  yarn
+  bun
+  rustup
+  rustc
+  go
+  gopls
+  golangci-lint
+  openjdk
+  gradle
+  maven
+  protobuf
+  buf
+
+  # ---
+
   # AI Tools
   # Tools related to artificial intelligence.
   aider-chat # AI pair programming in your terminal.
