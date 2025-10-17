@@ -23,6 +23,8 @@ return {
       "marksman",
       "clangd",
       "gopls",
+      "alejandra",
+      "rnix-lsp",
       -- Debugging / DAP
       "codelldb",
       "js-debug-adapter",
