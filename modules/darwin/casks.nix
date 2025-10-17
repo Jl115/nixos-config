@@ -26,4 +26,11 @@ _: [
   "font-jetbrains-mono-nerd-font"
   "font-sf-pro"
   "font-sketchybar-app-font"
+
+  # Microsof
+  "microsoft-teams"
+  "microsoft-outlook"
+
+  # Android Development
+  "android-studio"
 ]

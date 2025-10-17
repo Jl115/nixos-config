@@ -43,9 +43,7 @@ in {
     masApps = {
       "goodnotes-ki-notizen-pdf" = 1444383602;
       "pages" = 409201541;
-      # "moodle" = 633359593;
-      # "numbers" = 361304891;
-      # "microsoft-teams" = 1149555830;
+      "xcode" = 497799835;
     };
   };
 
