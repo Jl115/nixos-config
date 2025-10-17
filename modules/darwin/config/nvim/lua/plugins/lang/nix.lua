@@ -2,11 +2,30 @@ return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
-      -- Nix language server
-      rnix = {
-        cmd = { "rnix-lsp" },
+
+      -- Nix language server (nixd)
+      nixd = {
+        cmd = { "nixd" },
         filetypes = { "nix" },
-        root_dir = require("lspconfig.util").root_pattern(".git", "flake.nix", "shell.nix"),
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = "import <nixpkgs> { }",
+            },
+            formatting = {
+              command = { "alejandra" }, -- nixfmt or nixpkgs-fmt also work
+            },
+            -- Optional: expose flake options to LSP
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake "/etc/nixos").nixosConfigurations.hostname.options',
+              },
+              home_manager = {
+                expr = '(builtins.getFlake "/etc/nixos").homeConfigurations.username.options',
+              },
+            },
+          },
+        },
       },
     },
   },

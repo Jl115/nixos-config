@@ -15,6 +15,7 @@ _: [
   "visual-studio-code"
   "slack"
   "postman"
+  "nordvpn"
   # System Utilities
   "hammerspoon"
   "homerow"
