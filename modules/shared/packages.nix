@@ -86,5 +86,4 @@ with pkgs; [
   # ---
   # FORMATTERS & LINTERS
   alejandra
-  nix-instantiate
 ]
