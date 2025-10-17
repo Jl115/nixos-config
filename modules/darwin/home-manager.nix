@@ -1,14 +1,17 @@
-{ config, pkgs, lib, home-manager, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  home-manager,
+  ...
+}: let
   user = "jldev";
   # Define the content of your file as a derivation
-  sharedFiles = import ../shared/files.nix { inherit config pkgs; };
-  additionalFiles = import ./files.nix { inherit user config pkgs; };
-in
-{
+  sharedFiles = import ../shared/files.nix {inherit config pkgs;};
+  additionalFiles = import ./files.nix {inherit user config pkgs;};
+in {
   imports = [
-   ./dock
+    ./dock
   ];
 
   # It me
@@ -23,7 +26,7 @@ in
     enable = true;
     casks = pkgs.callPackage ./casks.nix {};
     brews = pkgs.callPackage ./brews.nix {};
-   
+
     # onActivation.cleanup = "uninstall";
 
     # These app IDs are from using the mas CLI app
@@ -49,11 +52,16 @@ in
   # Enable home-manager
   home-manager = {
     useGlobalPkgs = true;
-    users.${user} = { pkgs, config, lib, ... }:{
+    users.${user} = {
+      pkgs,
+      config,
+      lib,
+      ...
+    }: {
       home = {
         enableNixpkgsReleaseCheck = false;
         packages = pkgs.callPackage ./packages.nix {};
-        activation.cleanConflicts = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+        activation.cleanConflicts = lib.hm.dag.entryBefore ["checkLinkTargets"] ''
           rm -rf $HOME/.config/nvim
           rm -rf $HOME/.config/kitty
           rm -rf $HOME/.hammerspoon
@@ -61,7 +69,7 @@ in
         file = lib.mkMerge [
           sharedFiles
           additionalFiles
-          (lib.mapAttrs (_: value: value // { force = true; }) {
+          (lib.mapAttrs (_: value: value // {force = true;}) {
             ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./config/nvim;
             ".config/kitty".source = config.lib.file.mkOutOfStoreSymlink ./config/kitty;
             ".hammerspoon".source = config.lib.file.mkOutOfStoreSymlink ./config/.hammerspoon;
@@ -69,7 +77,7 @@ in
         ];
 
         activation = {
-          setWallpaper = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          setWallpaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
             # Path to your wallpaper inside nixos-config
             wallpaper="${./config/renji.jpg}"
             # Set wallpaper for all desktops
@@ -85,7 +93,7 @@ in
 
         stateVersion = "23.11";
       };
-      programs = {} // import ../shared/programs.nix { inherit config pkgs lib; };
+      programs = {} // import ../shared/programs.nix {inherit config pkgs lib;};
 
       # Marked broken Oct 20, 2022 check later to remove this
       # https://github.com/nix-community/home-manager/issues/3344
@@ -99,11 +107,11 @@ in
       enable = true;
       username = user;
       entries = [
-        { path = "/System/Applications/Apps.app"; }
-        { path = "/System/Applications/System Settings.app"; }
-        { path = "/System/Applications/goodnotes-ki-notizen-pdf.app"; }
-        { path = "/Applications/Arc.app"; }
-        { path = "${pkgs.kitty}/Applications/Kitty.app"; }
+        {path = "/System/Applications/Apps.app";}
+        {path = "/System/Applications/System Settings.app";}
+        {path = "/System/Applications/goodnotes-ki-notizen-pdf.app";}
+        {path = "/Applications/Arc.app";}
+        {path = "${pkgs.kitty}/Applications/Kitty.app";}
         {
           path = "${config.users.users.${user}.home}/Downloads";
           section = "others";

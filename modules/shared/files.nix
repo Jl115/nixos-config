@@ -1,14 +1,15 @@
-{ pkgs, config, ... }:
-
+{
+  pkgs,
+  config,
+  ...
+}:
 # let
 #  githubPublicKey = "ssh-ed25519 AAAA...";
 # in
 {
-
   # ".ssh/id_github.pub" = {
   #   text = githubPublicKey;
   # };
-
 
   # IMPORTANT: The Emacs configuration expects a config.org file at ~/.config/emacs/config.org
   # You can either:

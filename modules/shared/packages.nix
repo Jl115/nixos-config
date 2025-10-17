@@ -1,5 +1,4 @@
-{ pkgs }:
-
+{pkgs}:
 with pkgs; [
   # Core System & Shell Utilities
   # Essential command-line tools for system management and an enhanced shell experience.
@@ -56,7 +55,7 @@ with pkgs; [
   # AI Tools
   # Tools related to artificial intelligence.
   aider-chat # AI pair programming in your terminal.
-  
+
   # ---
 
   # Fonts & Media
@@ -79,4 +78,13 @@ with pkgs; [
   # General-purpose Python for system scripting and tooling.
   python3
   virtualenv
+
+  # ---
+  # LSP
+  nixd
+
+  # ---
+  # FORMATTERS & LINTERS
+  alejandra
+  nix-instantiate
 ]

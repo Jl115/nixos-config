@@ -1,7 +1,12 @@
-{ config, pkgs, agenix, secrets, ... }:
-
-let user = "jldev"; in
 {
+  config,
+  pkgs,
+  agenix,
+  secrets,
+  ...
+}: let
+  user = "jldev";
+in {
   age.identityPaths = [
     "/Users/${user}/.ssh/id_ed25519"
   ];
@@ -33,5 +38,4 @@ let user = "jldev"; in
   #   mode = "600";
   #   owner = "${user}";
   # };
-
 }
