@@ -63,6 +63,8 @@ in {
           rm -rf $HOME/.config/nvim
           rm -rf $HOME/.config/kitty
           rm -rf $HOME/.hammerspoon
+          rm -rf $HOME/.warp
+          rm -rf $HOME/.nvm
         '';
         file = lib.mkMerge [
           sharedFiles
@@ -72,6 +74,7 @@ in {
             ".config/kitty".source = config.lib.file.mkOutOfStoreSymlink ./config/kitty;
             ".hammerspoon".source = config.lib.file.mkOutOfStoreSymlink ./config/.hammerspoon;
             ".warp".source = config.lib.file.mkOutOfStoreSymlink ./config/.warp;
+            ".nvm".source = config.lib.file.mkOutOfStoreSymlink ./config/.nvm;
           })
         ];
 
